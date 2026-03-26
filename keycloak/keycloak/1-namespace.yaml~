@@ -2,18 +2,18 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: ocp-idp
+  name: demo-project
   labels:
-    kubernetes.io/metadata.name: ocp-idp
+    kubernetes.io/metadata.name: demo-project
   annotations:
-    openshift.io/display-name: RHDH IDP Project
+    openshift.io/display-name: RHDH demo project
 ---
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
   name: demo-project-group
-  namespace: ocp-idp
+  namespace: demo-project
 spec:
   targetNamespaces:
-    - ocp-idp
+    - demo-project
 ...
