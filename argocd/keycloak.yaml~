@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: devhub-deploy
+  name: keycloak-deploy
   namespace: openshift-gitops
 spec:
   destination:
@@ -10,8 +10,8 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: rhdh
-    repoURL: https://github.com/blessing-phiri/ocp_idp.git
+    path: keycloak
+    repoURL: https://github.com/blessing-phiri/ocp-idp.git
     targetRevision: phase-1-work
   syncPolicy:
     automated:
@@ -19,4 +19,11 @@ spec:
       prune: false
     syncOptions:
       - CreateNamespace=true
+      - RespectIgnoreDifferences=true
+      - StructuredDiff=true
+  ignoreDifferences:
+    - group: k8s.keycloak.org
+      kind: Keycloak
+      jsonPointers:
+        - /status
 ...
